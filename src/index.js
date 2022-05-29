@@ -1,13 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import "flowbite";
+import reportWebVitals from "./reportWebVitals";
+import StateProvider from "./context/StateProvider";
+import stateReducer, { initialState } from "./context/stateReducer";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <StateProvider reducer={stateReducer} initialState={initialState}>
+      <App />
+    </StateProvider>
   </React.StrictMode>
 );
 
