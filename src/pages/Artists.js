@@ -1,21 +1,22 @@
 import { Accordion, Avatar, Card } from "flowbite-react";
 import React, { useEffect, useState } from "react";
+import { useApi } from "../api";
 import { PendingVerification } from "../components/PendingVerification";
-import marketplaceApi from "../context/axios";
 
 export const Artists = () => {
+  const { getVerificationRequests, getVerificatedArtists } = useApi();
   const [pendingRequests, setPendingRequests] = useState([]);
   const [verifiedArtists, setVerifiedArtists] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const pending = await marketplaceApi.get("verify/allRequests");
+      const pending = await getVerificationRequests();
 
-      setPendingRequests(pending.data);
+      setPendingRequests(pending);
 
-      const verified = await marketplaceApi.get("users/verified");
-      console.log(verified.data);
-      setVerifiedArtists(verified.data);
+      const verified = await getVerificatedArtists();
+      console.log(verified);
+      setVerifiedArtists(verified);
     };
     fetchData();
   }, []);

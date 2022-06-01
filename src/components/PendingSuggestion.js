@@ -22,6 +22,7 @@ export const PendingSuggestion = ({
               Accept Suggestion
             </Button>
             <Button
+              color="red"
               onClick={openDeclineModal}
               className="bg-red-600 hover:bg-red-800"
             >

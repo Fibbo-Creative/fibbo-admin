@@ -1,17 +1,17 @@
 import { Accordion, Button } from "flowbite-react";
 import React, { useEffect, useState } from "react";
+import { useApi } from "../api";
 import { AcceptSuggestionModal } from "../components/AcceptSuggestionModal";
 import { ActiveSuggestion } from "../components/ActiveSuggestion";
 import { IndicatorCard } from "../components/IndicatorCard";
 import { PendingSuggestion } from "../components/PendingSuggestion";
-import marketplaceApi from "../context/axios";
-import {
-  getNumberOfSuggestionsActive,
-  getSuggestionsActive,
-  getSuggestionsContractBalance,
-} from "../context/ethersUtils";
+import { useCommunity } from "../contracts/community";
+import useProvider from "../hooks/useProvider";
 
 export const Community = () => {
+  const { getSuggestionsInProgress, getContractAddress } = useCommunity();
+  const { getWalletBalance } = useProvider();
+  const { getPendingSuggestions } = useApi();
   const [pendingSuggestions, setPendingSuggestions] = useState([]);
   const [activeSuggestions, setActiveSuggestions] = useState([]);
   const [detailSuggestion, setDetailSuggestion] = useState({});
@@ -34,18 +34,15 @@ export const Community = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const pending = await marketplaceApi.get(
-        "suggestions/pendingSuggestions"
-      );
-      setPendingSuggestions(pending.data);
+      const pending = await getPendingSuggestions();
+      setPendingSuggestions(pending);
 
-      const active = await getSuggestionsActive();
+      const active = await getSuggestionsInProgress();
       setActiveSuggestions(active);
+      setCountActive(active.length);
 
-      const count = await getNumberOfSuggestionsActive();
-      setCountActive(count);
-
-      const contractBalance = await getSuggestionsContractBalance();
+      const address = await getContractAddress();
+      const contractBalance = await getWalletBalance(address);
       setSuggestionsContractBalance(contractBalance);
     };
     fetchData();

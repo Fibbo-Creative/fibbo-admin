@@ -1,6 +1,6 @@
 import { Button, Modal, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import marketplaceApi from "../context/axios";
+import { useApi } from "../api";
 
 export const AcceptSuggestionModal = ({
   showModal,
@@ -8,23 +8,19 @@ export const AcceptSuggestionModal = ({
   item,
   handleClose,
 }) => {
+  const { acceptSuggestion, declineSuggestion } = useApi();
   const [suggestionValue, setSuggestionValue] = useState(0.0);
   const validateAndAdd = async () => {
-    const response = await marketplaceApi.post("suggestions/accept", {
-      title: item.title,
-      proposer: item.proposer,
-      value: suggestionValue.toString(),
-    });
-
+    await acceptSuggestion(
+      item.title,
+      item.proposer,
+      suggestionValue.toString()
+    );
     window.location.reload();
   };
 
   const declineAndRemove = async () => {
-    const response = await marketplaceApi.post("suggestions/decline", {
-      title: item.title,
-      proposer: item.proposer,
-    });
-
+    await declineSuggestion(item.title, item.proposer);
     window.location.reload();
   };
   return (
@@ -33,7 +29,7 @@ export const AcceptSuggestionModal = ({
         <Modal.Header />
         <Modal.Body className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-            Accept Suggestion
+            {decline ? "Decline Suggestion " : "Accept Suggestion"}
           </h3>
           <div className="flex gap-2">
             <div className="font-bold">Title:</div>
@@ -59,6 +55,7 @@ export const AcceptSuggestionModal = ({
           <div>
             {decline ? (
               <Button
+                color="red"
                 className="bg-red-600 hover:bg-red-800"
                 onClick={declineAndRemove}
               >

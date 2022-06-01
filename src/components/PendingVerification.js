@@ -1,7 +1,6 @@
 import { Accordion, Avatar, Button } from "flowbite-react";
 import React from "react";
-import { truncateWallet } from "../context/ethersUtils";
-
+import { truncateWallet } from "../utils/wallet";
 export const PendingVerification = ({
   key,
   item,
@@ -29,6 +28,7 @@ export const PendingVerification = ({
               Accept Request
             </Button>
             <Button
+              color="red"
               onClick={openDeclineModal}
               className="bg-red-600 hover:bg-red-800"
             >
