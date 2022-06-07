@@ -33,12 +33,27 @@ export const useApi = () => {
 
   const getVerificationRequests = async () => {
     const pending = await marketplaceApi.get("verify/allRequests");
+    console.log(pending.data);
     return pending.data;
   };
 
   const getVerificatedArtists = async () => {
     const verified = await marketplaceApi.get("users/verified");
     return verified.data;
+  };
+
+  const acceptVerificationRequest = async (proposer) => {
+    const verify = await marketplaceApi.post("verify/verifyArtist", {
+      artist: proposer,
+    });
+    return verify.data;
+  };
+
+  const declineVerificationRequest = async (proposer) => {
+    const decline = await marketplaceApi.post("verify/declineArtist", {
+      proposer: proposer,
+    });
+    return decline.data;
   };
   //
 
@@ -48,5 +63,7 @@ export const useApi = () => {
     declineSuggestion,
     getVerificationRequests,
     getVerificatedArtists,
+    declineVerificationRequest,
+    acceptVerificationRequest,
   };
 };

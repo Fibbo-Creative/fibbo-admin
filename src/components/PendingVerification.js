@@ -17,9 +17,20 @@ export const PendingVerification = ({
         </div>
       </Accordion.Title>
       <Accordion.Content>
-        <div className="border-b mb-5">
+        <div className="border-b mb-5 flex flex-col gap-3">
+          <div className="flex flex-col border-b pb-2">
+            <div className="flex gap-4">
+              <div className="text-gray-500">Nombre</div>
+              <div>{item.requestData.name}</div>
+            </div>
+            <div className="flex gap-4">
+              <div className="text-gray-500">Apellido</div>
+              <div>{item.requestData.lastName}</div>
+            </div>
+          </div>
+
           <p className="mb-2 text-gray-500 dark:text-gray-400">
-            {item.description}
+            {item.requestData.description}
           </p>
         </div>
         <div className="flex flex-col items-end">
