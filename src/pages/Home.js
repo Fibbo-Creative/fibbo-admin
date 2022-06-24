@@ -8,8 +8,8 @@ export const Home = () => {
     <div>
       {/** WALLET INDICATOR - TOTAL BALANCE - Percentatge up/down */}
       <WalletIndicators />
-      <GeneralIndicators />
-      <CommunityIndicators />
+      {/*  <GeneralIndicators />
+      <CommunityIndicators /> */}
     </div>
   );
 };

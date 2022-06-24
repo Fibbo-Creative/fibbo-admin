@@ -48,10 +48,10 @@ export const Community = () => {
     fetchData();
   }, []);
   return (
-    <div className="flex">
-      <div className="flex flex-col gap-3 mx-10 my-5 p-4 w-full">
+    <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col gap-3 lg:mx-10  my-5 p-4 w-full">
         <div className="text-3xl uppercase"> Live Suggestions </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row gap-2">
           <IndicatorCard
             Title={<b>Active Suggestions</b>}
             Content={<div>{countActive}</div>}
@@ -88,7 +88,7 @@ export const Community = () => {
           <div>No Active Suggestions</div>
         )}
       </div>
-      <div className="flex flex-col gap-3 mx-10 my-5 p-4 w-full">
+      <div className="flex flex-col gap-3 my-5 lg:mx-10  p-4 w-full">
         <div className="text-3xl uppercase"> Pending Suggestions </div>
         {pendingSuggestions?.length > 0 ? (
           <Accordion className="flex flex-col ">

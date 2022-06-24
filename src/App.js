@@ -7,7 +7,7 @@ import { Artists } from "./pages/Artists";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App w-screen">
       <BrowserRouter>
         <AdminNavbar />
         <Routes>
