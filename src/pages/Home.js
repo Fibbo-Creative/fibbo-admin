@@ -9,7 +9,7 @@ export const Home = () => {
       {/** WALLET INDICATOR - TOTAL BALANCE - Percentatge up/down */}
       <WalletIndicators />
       <GeneralIndicators />
-      {/* <CommunityIndicators /> */}
+      <CommunityIndicators />
     </div>
   );
 };

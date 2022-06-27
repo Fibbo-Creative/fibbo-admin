@@ -26,8 +26,8 @@ export const GeneralIndicators = () => {
   }, [getNftsForSale]);
   return (
     <div className="flex flex-col gap-3 mx-10 my-5 p-4">
-      <div className="text-3xl uppercase"> Market Indicators </div>
-      <div className="flex gap-10">
+      <div className="text-xl md:text-3xl uppercase"> Market Indicators </div>
+      <div className="flex flex-col gap-4 md:flex-row md:gap-10">
         {/** Number of NFTs created */}
         <IndicatorCard
           Title={<div>NFTs On Sale</div>}
