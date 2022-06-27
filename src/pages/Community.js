@@ -11,7 +11,7 @@ import useProvider from "../hooks/useProvider";
 export const Community = () => {
   const { getSuggestionsInProgress, getContractAddress } = useCommunity();
   const { getWalletBalance } = useProvider();
-  const { getPendingSuggestions } = useApi();
+  const { getPendingSuggestions, getProfileInfo } = useApi();
   const [pendingSuggestions, setPendingSuggestions] = useState([]);
   const [activeSuggestions, setActiveSuggestions] = useState([]);
   const [detailSuggestion, setDetailSuggestion] = useState({});
@@ -35,11 +35,34 @@ export const Community = () => {
   useEffect(() => {
     const fetchData = async () => {
       const pending = await getPendingSuggestions();
-      setPendingSuggestions(pending);
+
+      let formattedPendingSugestions = await Promise.all(
+        pending.map(async (item) => {
+          const proposer = item.proposer;
+          const profileInfo = await getProfileInfo(proposer);
+          return {
+            ...item,
+            proposer: profileInfo,
+          };
+        })
+      );
+
+      setPendingSuggestions(formattedPendingSugestions);
 
       const active = await getSuggestionsInProgress();
-      setActiveSuggestions(active);
-      setCountActive(active.length);
+
+      let formattedActiveSugestions = await Promise.all(
+        active.map(async (item) => {
+          const proposer = item.proposer;
+          const profileInfo = await getProfileInfo(proposer);
+          return {
+            ...item,
+            proposer: profileInfo,
+          };
+        })
+      );
+      setActiveSuggestions(formattedActiveSugestions);
+      setCountActive(formattedActiveSugestions.length);
 
       const address = await getContractAddress();
       const contractBalance = await getWalletBalance(address);

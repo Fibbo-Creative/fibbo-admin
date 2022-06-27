@@ -13,14 +13,14 @@ export const AcceptSuggestionModal = ({
   const validateAndAdd = async () => {
     await acceptSuggestion(
       item.title,
-      item.proposer,
+      item.proposer.wallet,
       suggestionValue.toString()
     );
     window.location.reload();
   };
 
   const declineAndRemove = async () => {
-    await declineSuggestion(item.title, item.proposer);
+    await declineSuggestion(item.title, item.proposer.wallet);
     window.location.reload();
   };
   return (

@@ -29,8 +29,20 @@ export const ActiveSuggestion = ({ key, item }) => {
             color="green"
           />
         </div>
-        <div className="flex flex-col items-end border-t-2 ">
-          <div className="flex gap-8 mt-2">
+        <div className="flex flex-col border-t-2 ">
+          <div className="flex justify-between items-center gap-8 mt-2">
+            <div className="flex gap-5  items-center">
+              <i className="text-sm">Propuesto por</i>
+              <div className="flex border items-center gap-2 p-2 rounded-xl">
+                <img
+                  width={32}
+                  src={item.proposer.profileImg}
+                  className="rounded-full"
+                  alt={`${item.proposer.username}-img`}
+                />
+                {item.proposer.username}
+              </div>
+            </div>
             <Button>Process Suggestion</Button>
           </div>
         </div>

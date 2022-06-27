@@ -57,7 +57,16 @@ export const useApi = () => {
   };
   //
 
+  //#region Profiles
+  const getProfileInfo = async (address) => {
+    const res = await marketplaceApi.get(`users/profile?wallet=${address}`);
+    return res.data;
+  };
+
+  //
+
   return {
+    getProfileInfo,
     getPendingSuggestions,
     acceptSuggestion,
     declineSuggestion,
