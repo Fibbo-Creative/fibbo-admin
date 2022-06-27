@@ -3,7 +3,7 @@ import axios from "axios";
 const herokuURL = "https://fibbo-market-api.herokuapp.com/";
 const localURL = "http://localhost:9000/";
 
-const marketplaceApi = axios.create({ baseURL: herokuURL });
+const marketplaceApi = axios.create({ baseURL: localURL });
 const isMainnet = false;
 
 export const useApi = () => {
@@ -27,7 +27,7 @@ export const useApi = () => {
       proposer: proposer,
     });
   };
-  //
+  //#endregion
 
   //#region Artists
 
@@ -55,7 +55,7 @@ export const useApi = () => {
     });
     return decline.data;
   };
-  //
+  //#endregion
 
   //#region Profiles
   const getProfileInfo = async (address) => {
@@ -63,10 +63,31 @@ export const useApi = () => {
     return res.data;
   };
 
-  //
+  const getAllProfiles = async () => {
+    const res = await marketplaceApi.get(`users/all`);
+    return res.data;
+  };
+
+  //#endregion
+
+  //#region Nfts
+  const getNftsForSale = async () => {
+    const res = await marketplaceApi.get("nfts/nftsForSale");
+    return res.data;
+  };
+
+  const getAllTransfers = async () => {
+    const res = await marketplaceApi.get("nfts/allTransfers");
+    return res.data;
+  };
+
+  //#endregion
 
   return {
+    getNftsForSale,
+    getAllProfiles,
     getProfileInfo,
+    getAllTransfers,
     getPendingSuggestions,
     acceptSuggestion,
     declineSuggestion,

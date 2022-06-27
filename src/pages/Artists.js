@@ -44,7 +44,7 @@ export const Artists = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-wrap">
+    <div className="flex flex-col md:flex-row">
       <div className="flex flex-col gap-3 lg:mx-10  my-5 p-4 w-full">
         <div className="text-3xl uppercase"> Verify Requests </div>
         {pendingRequests?.length > 0 ? (
