@@ -1,9 +1,9 @@
 export const Contracts = {
   MAINNET: {
-    addressRegistry: "0xFFa87C37014c0967b5666F72cD8f0d69aF75EB94",
+    addressRegistry: "0x4273fBB5513A8A52B8B980d70A5cFabbfdAd17D6",
   },
   TESTNET: {
-    addressRegistry: "0xFFa87C37014c0967b5666F72cD8f0d69aF75EB94",
+    addressRegistry: "0x4273fBB5513A8A52B8B980d70A5cFabbfdAd17D6",
   },
 };
 
