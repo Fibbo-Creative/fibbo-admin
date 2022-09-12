@@ -5,7 +5,7 @@ export const Contracts = {
     wftm: "0x4EEf747dC4f5d110d9bCfA5C6F24b3359bD4B2d4",
   },
   TESTNET: {
-    addressRegistry: "0x3AB3e6D66a2f4688c5746F836539a1dDa6D191eB",
+    addressRegistry: "0x02c744763651E4a7Bd079c04d5EAA6e18a46E00d",
     relayer: "0x1f1175101579059a6d8a695a29650eacd6b043b0",
     wftm: "0x4EEf747dC4f5d110d9bCfA5C6F24b3359bD4B2d4",
   },
