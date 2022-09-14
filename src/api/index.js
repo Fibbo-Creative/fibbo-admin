@@ -3,13 +3,18 @@ import axios from "axios";
 const localURL = "http://localhost:9000/";
 const herokuDevURL = "https://market-api-dev.herokuapp.com/";
 
-const marketplaceApi = axios.create({ baseURL: herokuDevURL });
+const marketplaceApi = axios.create({ baseURL: localURL });
 const isMainnet = false;
 
 export const useApi = () => {
   //#region Community
   const getPendingSuggestions = async () => {
     const pending = await marketplaceApi.get("suggestions/pendingSuggestions");
+    return pending.data;
+  };
+
+  const getActiveSuggestions = async () => {
+    const pending = await marketplaceApi.get("suggestions/activeSuggestions");
     return pending.data;
   };
 
@@ -89,6 +94,7 @@ export const useApi = () => {
     getProfileInfo,
     getAllTransfers,
     getPendingSuggestions,
+    getActiveSuggestions,
     acceptSuggestion,
     declineSuggestion,
     getVerificationRequests,

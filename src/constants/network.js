@@ -2,12 +2,12 @@ export const Contracts = {
   MAINNET: {
     addressRegistry: "0x4273fBB5513A8A52B8B980d70A5cFabbfdAd17D6",
     relayer: "0x1f1175101579059a6d8a695a29650eacd6b043b0",
-    wftm: "0x4EEf747dC4f5d110d9bCfA5C6F24b3359bD4B2d4",
+    wftm: "0x4F749478513C5433C02d31721f21Dc8f73A003Af",
   },
   TESTNET: {
-    addressRegistry: "0x02c744763651E4a7Bd079c04d5EAA6e18a46E00d",
+    addressRegistry: "0x1C2123D5E78FE2a107c0bC76d5260393F7775DD8",
     relayer: "0x1f1175101579059a6d8a695a29650eacd6b043b0",
-    wftm: "0x4EEf747dC4f5d110d9bCfA5C6F24b3359bD4B2d4",
+    wftm: "0x4F749478513C5433C02d31721f21Dc8f73A003Af",
   },
 };
 

@@ -11,7 +11,8 @@ import useProvider from "../hooks/useProvider";
 export const Community = () => {
   const { getSuggestionsInProgress, getContractAddress } = useCommunity();
   const { getWalletBalance } = useProvider();
-  const { getPendingSuggestions, getProfileInfo } = useApi();
+  const { getPendingSuggestions, getProfileInfo, getActiveSuggestions } =
+    useApi();
   const [pendingSuggestions, setPendingSuggestions] = useState([]);
   const [activeSuggestions, setActiveSuggestions] = useState([]);
   const [detailSuggestion, setDetailSuggestion] = useState({});
@@ -49,7 +50,7 @@ export const Community = () => {
 
       setPendingSuggestions(formattedPendingSugestions);
 
-      const active = await getSuggestionsInProgress();
+      const active = await getActiveSuggestions();
 
       let formattedActiveSugestions = await Promise.all(
         active.map(async (item) => {

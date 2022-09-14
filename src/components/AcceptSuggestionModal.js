@@ -39,19 +39,8 @@ export const AcceptSuggestionModal = ({
             <div className="font-bold">Description:</div>
             <div className="italic">{item?.description}</div>
           </div>
-          <div>
-            Please, put the value that this suggestion will cost to implement
-          </div>
-          <div>
-            {!decline && (
-              <TextInput
-                value={suggestionValue}
-                onChange={(e) => setSuggestionValue(e.target.value)}
-                type="number"
-                placeholder="Value of the suggestion"
-              />
-            )}
-          </div>
+
+          <div></div>
           <div>
             {decline ? (
               <Button
