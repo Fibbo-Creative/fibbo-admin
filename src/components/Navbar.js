@@ -27,6 +27,12 @@ export const AdminNavbar = () => {
         <Navbar.Link href="/artists" active={location.pathname === "/artists"}>
           Artists
         </Navbar.Link>
+        <Navbar.Link
+          href="/gasStation"
+          active={location.pathname === "/gasStation"}
+        >
+          Gas Station
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

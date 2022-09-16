@@ -88,6 +88,19 @@ export const useApi = () => {
 
   //#endregion
 
+  //#region Nfts
+  const getOldManagerBalance = async () => {
+    const res = await marketplaceApi.get("admin/lastBalance");
+    return res.data;
+  };
+
+  const getOldGasStationBalance = async () => {
+    const res = await marketplaceApi.get("admin/lastGasStation");
+    return res.data;
+  };
+
+  //#endregion
+
   return {
     getNftsForSale,
     getAllProfiles,
@@ -101,5 +114,7 @@ export const useApi = () => {
     getVerificatedArtists,
     declineVerificationRequest,
     acceptVerificationRequest,
+    getOldManagerBalance,
+    getOldGasStationBalance,
   };
 };

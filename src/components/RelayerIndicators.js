@@ -3,6 +3,7 @@ import { IndicatorCard } from "./IndicatorCard";
 import { Contracts, MANAGER_WALLET } from "../constants/network";
 import useProvider from "../hooks/useProvider";
 import { truncateWallet } from "../utils/wallet";
+import { useApi } from "../api";
 
 const relayer = Contracts.TESTNET.relayer;
 
@@ -17,14 +18,19 @@ const calculateProgress = (A, B) => {
 };
 export const RelayerIndicators = () => {
   const { getWalletBalance } = useProvider();
+  const { getOldGasStationBalance } = useApi();
+
   const [relayerBalance, setWalletBalance] = useState(0);
   const [balanceProgress, setBalanceProgress] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       if (relayerBalance === 0) {
         const balance = await getWalletBalance(relayer);
-        console.log(balance);
+        const oldBalance = await getOldGasStationBalance();
         setWalletBalance(balance);
+        setBalanceProgress(
+          calculateProgress(oldBalance.balance, parseFloat(balance))
+        );
       }
     };
 
@@ -39,6 +45,18 @@ export const RelayerIndicators = () => {
         <IndicatorCard
           Title={<div>Gas Station Balance</div>}
           Content={<div>{relayerBalance} FTM</div>}
+        />
+        <IndicatorCard
+          Title={<div>Progress</div>}
+          Content={
+            <div
+              className={`${
+                balanceProgress > 0 ? "text-green-600" : "text-red-600"
+              }`}
+            >
+              {balanceProgress}%
+            </div>
+          }
         />
       </div>
     </div>

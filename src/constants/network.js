@@ -7,7 +7,7 @@ export const Contracts = {
   TESTNET: {
     addressRegistry: "0x1C2123D5E78FE2a107c0bC76d5260393F7775DD8",
     relayer: "0x1f1175101579059a6d8a695a29650eacd6b043b0",
-    wftm: "0x4F749478513C5433C02d31721f21Dc8f73A003Af",
+    wftm: "0x2b513ea648453a3Cf6EF3A801356d54A2dB625e9",
   },
 };
 

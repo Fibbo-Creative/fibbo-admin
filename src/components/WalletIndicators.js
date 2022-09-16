@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useApi } from "../api";
 import { IndicatorCard } from "../components/IndicatorCard";
 import { MANAGER_WALLET } from "../constants/network";
 import { useWFTMContract } from "../contracts/wftm";
@@ -16,7 +17,7 @@ const calculateProgress = (A, B) => {
 };
 export const WalletIndicators = () => {
   const { getWalletBalance } = useProvider();
-  const { getWFTMBalance } = useWFTMContract();
+  const { getOldManagerBalance } = useApi();
   const [walletBalance, setWalletBalance] = useState(0);
   const [wftmBalance, setWftmBalance] = useState(0);
 
@@ -25,10 +26,11 @@ export const WalletIndicators = () => {
     const fetchData = async () => {
       if (walletBalance === 0) {
         const balance = await getWalletBalance(MANAGER_WALLET);
-        const _wftmBalance = await getWFTMBalance(MANAGER_WALLET);
+        const oldBalance = await getOldManagerBalance();
         setWalletBalance(balance);
-        setWftmBalance(_wftmBalance);
-        setBalanceProgress(calculateProgress(2, parseFloat(balance)));
+        setBalanceProgress(
+          calculateProgress(oldBalance.balance, parseFloat(balance))
+        );
       }
     };
 
@@ -47,7 +49,6 @@ export const WalletIndicators = () => {
           Content={
             <div className="flex flex-col">
               <div>{walletBalance} FTM</div>
-              <div>{wftmBalance} wFTM</div>
             </div>
           }
         />

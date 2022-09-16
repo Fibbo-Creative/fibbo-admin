@@ -80,10 +80,7 @@ export const Community = () => {
             Title={<b>Active Suggestions</b>}
             Content={<div>{countActive}</div>}
           />
-          <IndicatorCard
-            Title={<b>Total Acumulated</b>}
-            Content={<div>{suggestionsContractBalance} FTM</div>}
-          />
+
           <IndicatorCard
             Title={<b>Completed Suggestions</b>}
             Content={<div>{countCompleted}</div>}
