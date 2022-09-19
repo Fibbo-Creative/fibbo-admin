@@ -1,35 +1,12 @@
-import { Accordion, Avatar, Button, Card } from "flowbite-react";
+import { Button } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { useApi } from "../api";
-import { AcceptVerifyModal } from "../components/AcceptVerifyModal";
-import { PendingVerification } from "../components/PendingVerification";
 import { RelayerIndicators } from "../components/RelayerIndicators";
 
 export const GasStation = () => {
   const { getVerificationRequests, getVerificatedArtists } = useApi();
   const [pendingRequests, setPendingRequests] = useState([]);
   const [verifiedArtists, setVerifiedArtists] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [detailRequest, setDetailRequest] = useState(null);
-  const [decline, setDecline] = useState(false);
-
-  const handleOpenModal = (item) => {
-    setDetailRequest(item);
-    setDecline(false);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setDetailRequest(null);
-    setDecline(false);
-    setShowModal(false);
-  };
-
-  const handleOpenDeclineModal = (item) => {
-    setDetailRequest(item);
-    setDecline(true);
-    setShowModal(true);
-  };
 
   useEffect(() => {
     const fetchData = async () => {

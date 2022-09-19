@@ -18,11 +18,22 @@ export const useApi = () => {
     return pending.data;
   };
 
-  const acceptSuggestion = async (title, proposer, value) => {
+  const getSavedSuggestions = async () => {
+    const pending = await marketplaceApi.get("suggestions/savedSuggestions");
+    return pending.data;
+  };
+
+  const acceptSuggestion = async (title, proposer) => {
     await marketplaceApi.post("suggestions/accept", {
       title: title,
       proposer: proposer,
-      value: value,
+    });
+  };
+
+  const saveSuggestion = async (title, proposer) => {
+    await marketplaceApi.post("suggestions/save", {
+      title: title,
+      proposer: proposer,
     });
   };
 
@@ -88,7 +99,7 @@ export const useApi = () => {
 
   //#endregion
 
-  //#region Nfts
+  //#region Admin
   const getOldManagerBalance = async () => {
     const res = await marketplaceApi.get("admin/lastBalance");
     return res.data;
@@ -96,6 +107,33 @@ export const useApi = () => {
 
   const getOldGasStationBalance = async () => {
     const res = await marketplaceApi.get("admin/lastGasStation");
+    return res.data;
+  };
+
+  const loginUser = async (email, passwd) => {
+    const res = await marketplaceApi.get(
+      `admin/login?email=${email}&password=${passwd}`
+    );
+    return res.data;
+  };
+
+  const loginUserByToken = async (token) => {
+    const res = await marketplaceApi.get(`admin/loginToken?token=${token}`);
+    return res.data;
+  };
+
+  const getAllCategories = async () => {
+    const res = await marketplaceApi.get("nfts/categories");
+    return res.data;
+  };
+
+  const addNewCategory = async (engName, espName, identifier, icon) => {
+    const res = await marketplaceApi.post("admin/newCategory", {
+      engName,
+      espName,
+      identifier,
+      icon,
+    });
     return res.data;
   };
 
@@ -108,6 +146,7 @@ export const useApi = () => {
     getAllTransfers,
     getPendingSuggestions,
     getActiveSuggestions,
+    saveSuggestion,
     acceptSuggestion,
     declineSuggestion,
     getVerificationRequests,
@@ -116,5 +155,10 @@ export const useApi = () => {
     acceptVerificationRequest,
     getOldManagerBalance,
     getOldGasStationBalance,
+    loginUser,
+    loginUserByToken,
+    getAllCategories,
+    getSavedSuggestions,
+    addNewCategory,
   };
 };

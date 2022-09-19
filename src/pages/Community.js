@@ -3,18 +3,26 @@ import React, { useEffect, useState } from "react";
 import { useApi } from "../api";
 import { AcceptSuggestionModal } from "../components/AcceptSuggestionModal";
 import { ActiveSuggestion } from "../components/ActiveSuggestion";
+import { EndSuggestionModal } from "../components/EndSuggestion";
 import { IndicatorCard } from "../components/IndicatorCard";
 import { PendingSuggestion } from "../components/PendingSuggestion";
+import { SavedSuggestion } from "../components/SavedSuggestion";
 import { useCommunity } from "../contracts/community";
 import useProvider from "../hooks/useProvider";
 
 export const Community = () => {
   const { getSuggestionsInProgress, getContractAddress } = useCommunity();
   const { getWalletBalance } = useProvider();
-  const { getPendingSuggestions, getProfileInfo, getActiveSuggestions } =
-    useApi();
+  const {
+    getPendingSuggestions,
+    getProfileInfo,
+    getActiveSuggestions,
+    getSavedSuggestions,
+  } = useApi();
   const [pendingSuggestions, setPendingSuggestions] = useState([]);
   const [activeSuggestions, setActiveSuggestions] = useState([]);
+  const [savedSuggestions, setSavedSuggestions] = useState([]);
+
   const [detailSuggestion, setDetailSuggestion] = useState({});
   const [decline, setDecline] = useState(false);
   const [countActive, setCountActive] = useState(0);
@@ -22,6 +30,7 @@ export const Community = () => {
   const [suggestionsContractBalance, setSuggestionsContractBalance] =
     useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [showEndModal, setShowEndModal] = useState(false);
 
   const handleOpenModal = (item) => {
     setDetailSuggestion(item);
@@ -33,6 +42,12 @@ export const Community = () => {
     setDecline(true);
     setShowModal(true);
   };
+
+  const handleOpenEndModal = (item) => {
+    setDetailSuggestion(item);
+    setShowEndModal(true);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const pending = await getPendingSuggestions();
@@ -63,7 +78,23 @@ export const Community = () => {
         })
       );
       setActiveSuggestions(formattedActiveSugestions);
+
       setCountActive(formattedActiveSugestions.length);
+
+      const saved = await getSavedSuggestions();
+
+      let formattedSavedSuggestons = await Promise.all(
+        saved.map(async (item) => {
+          const proposer = item.proposer;
+          const profileInfo = await getProfileInfo(proposer);
+          return {
+            ...item,
+            proposer: profileInfo,
+          };
+        })
+      );
+      setSavedSuggestions(formattedSavedSuggestons);
+      setCountCompleted(formattedSavedSuggestons.length);
 
       const address = await getContractAddress();
       const contractBalance = await getWalletBalance(address);
@@ -93,16 +124,15 @@ export const Community = () => {
                 <ActiveSuggestion
                   key={item.suggestionId}
                   item={item}
-                  openAcceptModal={() => handleOpenModal(item)}
-                  openDeclineModal={() => handleOpenDeclineModal(item)}
+                  openAcceptModal={() => handleOpenEndModal(item)}
                 />
               );
             })}
-            <AcceptSuggestionModal
-              showModal={showModal}
+            <EndSuggestionModal
+              showModal={showEndModal}
               item={detailSuggestion}
               decline={decline}
-              handleClose={() => setShowModal(false)}
+              handleClose={() => setShowEndModal(false)}
             />
           </Accordion>
         ) : (
@@ -132,6 +162,18 @@ export const Community = () => {
           </Accordion>
         ) : (
           <div>No Pending Suggestions</div>
+        )}
+      </div>
+      <div className="flex flex-col gap-3 my-5 lg:mx-10  p-4 w-full">
+        <div className="text-3xl uppercase"> Saved Suggestions </div>
+        {savedSuggestions?.length > 0 ? (
+          <Accordion className="flex flex-col ">
+            {savedSuggestions?.map((item) => {
+              return <SavedSuggestion key={item._id} item={item} />;
+            })}
+          </Accordion>
+        ) : (
+          <div>No Saved Suggestions</div>
         )}
       </div>
     </div>

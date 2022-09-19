@@ -18,12 +18,16 @@ export const AdminNavbar = () => {
         <Navbar.Link href="/" active={location.pathname === "/"}>
           Home
         </Navbar.Link>
+        <Navbar.Link href="/market" active={location.pathname === "/market"}>
+          Market
+        </Navbar.Link>
         <Navbar.Link
           href="/community"
           active={location.pathname === "/community"}
         >
           Community
         </Navbar.Link>
+
         <Navbar.Link href="/artists" active={location.pathname === "/artists"}>
           Artists
         </Navbar.Link>

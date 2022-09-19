@@ -5,7 +5,7 @@ const calculatePercentatge = (numA, numB) => {
   return (numA / numB) * 100;
 };
 
-export const ActiveSuggestion = ({ key, item, openAcceptModal }) => {
+export const SavedSuggestion = ({ key, item, openAcceptModal }) => {
   return (
     <Accordion.Panel className="">
       <Accordion.Title arrowIcon={undefined}>
@@ -34,7 +34,6 @@ export const ActiveSuggestion = ({ key, item, openAcceptModal }) => {
                 {item.proposer.username}
               </div>
             </div>
-            <Button onClick={openAcceptModal}>Finalizar</Button>
           </div>
         </div>
       </Accordion.Content>
