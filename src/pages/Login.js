@@ -17,6 +17,7 @@ export const Login = () => {
       window.localStorage.setItem("authToken", dbUser.token);
       dispatch({
         type: actionTypes.LOGIN_USER,
+        token: dbUser.token,
       });
     } else {
       setError(true);

@@ -3,6 +3,7 @@ export const initialState = {
   balance: 0,
   correctChain: true,
   auth: false,
+  authToken: "",
 };
 
 export const actionTypes = {
@@ -15,6 +16,7 @@ const stateReducer = (state, action) => {
       return {
         ...state,
         auth: true,
+        authToken: action.token,
       };
 
     default:

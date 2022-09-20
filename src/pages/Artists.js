@@ -46,7 +46,7 @@ export const Artists = () => {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="flex flex-col gap-3 lg:mx-10  my-5 p-4 w-full">
-        <div className="text-3xl uppercase"> Verify Requests </div>
+        <div className="text-3xl uppercase"> Peticiones de Verificado </div>
         {pendingRequests?.length > 0 ? (
           <Accordion className="flex flex-col ">
             {pendingRequests?.map((item) => {
@@ -65,7 +65,7 @@ export const Artists = () => {
         )}
       </div>
       <div className="flex flex-col gap-3 lg:mx-10 my-5 p-4 w-full">
-        <div className="text-3xl uppercase"> Verified Artists </div>
+        <div className="text-3xl uppercase"> Artistas Verificados </div>
         <div className="flex flex-wrap gap-4">
           {verifiedArtists.map((item) => {
             return (

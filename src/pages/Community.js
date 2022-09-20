@@ -105,15 +105,15 @@ export const Community = () => {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="flex flex-col gap-3 lg:mx-10  my-5 p-4 w-full">
-        <div className="text-3xl uppercase"> Live Suggestions </div>
+        <div className="text-3xl uppercase"> Sugerencias Activas </div>
         <div className="flex flex-col md:flex-row gap-2">
           <IndicatorCard
-            Title={<b>Active Suggestions</b>}
+            Title={<b>Sugerencias Activas </b>}
             Content={<div>{countActive}</div>}
           />
 
           <IndicatorCard
-            Title={<b>Completed Suggestions</b>}
+            Title={<b>Sugerencias Completadas </b>}
             Content={<div>{countCompleted}</div>}
           />
         </div>
@@ -136,11 +136,11 @@ export const Community = () => {
             />
           </Accordion>
         ) : (
-          <div>No Active Suggestions</div>
+          <div>No Hay sugerencias activas</div>
         )}
       </div>
       <div className="flex flex-col gap-3 my-5 lg:mx-10  p-4 w-full">
-        <div className="text-3xl uppercase"> Pending Suggestions </div>
+        <div className="text-3xl uppercase"> Sugerencias Pendientes </div>
         {pendingSuggestions?.length > 0 ? (
           <Accordion className="flex flex-col ">
             {pendingSuggestions?.map((item) => {
@@ -161,11 +161,11 @@ export const Community = () => {
             />
           </Accordion>
         ) : (
-          <div>No Pending Suggestions</div>
+          <div>No hay sugerencias pendientes</div>
         )}
       </div>
       <div className="flex flex-col gap-3 my-5 lg:mx-10  p-4 w-full">
-        <div className="text-3xl uppercase"> Saved Suggestions </div>
+        <div className="text-3xl uppercase">Sugerencias Guardadas</div>
         {savedSuggestions?.length > 0 ? (
           <Accordion className="flex flex-col ">
             {savedSuggestions?.map((item) => {
@@ -173,7 +173,7 @@ export const Community = () => {
             })}
           </Accordion>
         ) : (
-          <div>No Saved Suggestions</div>
+          <div>No hay sugerencias guardadas</div>
         )}
       </div>
     </div>

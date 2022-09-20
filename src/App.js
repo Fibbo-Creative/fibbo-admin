@@ -26,6 +26,7 @@ function App() {
         if (dbUser) {
           dispatch({
             type: actionTypes.LOGIN_USER,
+            token: token,
           });
         }
       }

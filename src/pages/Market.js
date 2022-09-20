@@ -48,7 +48,7 @@ export const Market = () => {
     <div className="flex flex-col md:flex-row">
       <div className="flex flex-col gap-3 ">
         <div className="flex flex-col gap-3 lg:mx-10 my-5 p-4 w-full">
-          <div className="text-3xl uppercase"> Item Categories </div>
+          <div className="text-3xl uppercase"> Categorias NFT </div>
           <div className="flex flex-wrap gap-4 items-center">
             {categories.map((item) => {
               return (
@@ -61,7 +61,7 @@ export const Market = () => {
               );
             })}
             <Button color="green" onClick={handleOpenModal}>
-              Add New
+              Añadir Nueva
             </Button>
           </div>
         </div>

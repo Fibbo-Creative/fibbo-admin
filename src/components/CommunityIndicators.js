@@ -28,19 +28,19 @@ export const CommunityIndicators = () => {
   }, []);
   return (
     <div className="flex flex-col gap-3 mx-10 my-5 p-4">
-      <div className="text-xl md:text-3xl uppercase">Community Indicators</div>
+      <div className="text-xl md:text-3xl uppercase">Indicatores Comunidad</div>
       <div className="flex flex-col gap-4 md:flex-row md:gap-10">
         {/** Number of NFTs created */}
         <IndicatorCard
-          Title={<div>Suggestions Live</div>}
+          Title={<div>Sugerencias Activas</div>}
           Content={<div>{liveSuggestions}</div>}
         />
         <IndicatorCard
-          Title={<div>Pending Suggestions</div>}
+          Title={<div>Sugerencias Pendientes</div>}
           Content={<div>{pendingSuggestions}</div>}
         />
         <IndicatorCard
-          Title={<div>Pending Verify Artists</div>}
+          Title={<div>Verificaciones Pendientes</div>}
           Content={<div>{pendingArtists}</div>}
         />
       </div>

@@ -23,7 +23,7 @@ export const NewCategoryModal = ({ showModal, handleClose, onAdd }) => {
         <Modal.Header />
         <Modal.Body className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-            Add new category
+            Añadir nueva categoria
           </h3>
           <div>
             Para añadir una nueva categoría debemos introducir los siguientes

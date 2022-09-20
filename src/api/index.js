@@ -43,6 +43,13 @@ export const useApi = () => {
       proposer: proposer,
     });
   };
+
+  const deleteSavedSuggestion = async (title, proposer) => {
+    await marketplaceApi.post("suggestions/delete", {
+      title: title,
+      proposer: proposer,
+    });
+  };
   //#endregion
 
   //#region Artists
@@ -137,6 +144,14 @@ export const useApi = () => {
     return res.data;
   };
 
+  const depositToGasStation = async (token, value) => {
+    const res = await marketplaceApi.post("admin/deposit", {
+      token,
+      value,
+    });
+    return res.data;
+  };
+
   //#endregion
 
   return {
@@ -150,6 +165,7 @@ export const useApi = () => {
     acceptSuggestion,
     declineSuggestion,
     getVerificationRequests,
+    deleteSavedSuggestion,
     getVerificatedArtists,
     declineVerificationRequest,
     acceptVerificationRequest,
@@ -159,6 +175,7 @@ export const useApi = () => {
     loginUserByToken,
     getAllCategories,
     getSavedSuggestions,
+    depositToGasStation,
     addNewCategory,
   };
 };

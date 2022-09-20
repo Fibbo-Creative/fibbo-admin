@@ -1,11 +1,13 @@
 import { Accordion, Button, Progress } from "flowbite-react";
-import React from "react";
+import React, { useState } from "react";
+import { DeleteSavedModal } from "./DeleteSavedModal";
 
 const calculatePercentatge = (numA, numB) => {
   return (numA / numB) * 100;
 };
 
 export const SavedSuggestion = ({ key, item, openAcceptModal }) => {
+  const [openDeleteModal, setOpenDeteleModal] = useState(false);
   return (
     <Accordion.Panel className="">
       <Accordion.Title arrowIcon={undefined}>
@@ -35,6 +37,14 @@ export const SavedSuggestion = ({ key, item, openAcceptModal }) => {
               </div>
             </div>
           </div>
+          <Button color="red" onClick={() => setOpenDeteleModal(true)}>
+            Eliminar
+          </Button>
+          <DeleteSavedModal
+            item={item}
+            showModal={openDeleteModal}
+            handleClose={() => setOpenDeteleModal(false)}
+          />
         </div>
       </Accordion.Content>
     </Accordion.Panel>

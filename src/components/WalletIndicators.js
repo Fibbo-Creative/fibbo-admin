@@ -38,10 +38,10 @@ export const WalletIndicators = () => {
   }, [getWalletBalance]);
   return (
     <div className="flex flex-col gap-3 mx-10 my-5 p-4">
-      <div className="text-xl md:text-3xl uppercase"> Wallet Indicators </div>
+      <div className="text-xl md:text-3xl uppercase"> Indicadores Wallet </div>
       <div className="flex flex-col gap-4 md:flex-row md:gap-10">
         <IndicatorCard
-          Title={<div>Address</div>}
+          Title={<div>Wallet</div>}
           Content={<div>{truncateWallet(MANAGER_WALLET)}</div>}
         />
         <IndicatorCard
@@ -53,7 +53,7 @@ export const WalletIndicators = () => {
           }
         />
         <IndicatorCard
-          Title={<div>Progress</div>}
+          Title={<div>Progreso</div>}
           Content={
             <div
               className={`${
