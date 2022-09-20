@@ -1,35 +1,15 @@
-import { Accordion, Avatar, Button, Card } from "flowbite-react";
+import { Button } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { useApi } from "../api";
-import { AcceptVerifyModal } from "../components/AcceptVerifyModal";
-import { PendingVerification } from "../components/PendingVerification";
+import { DepositModal } from "../components/DepositModal";
 import { RelayerIndicators } from "../components/RelayerIndicators";
 
 export const GasStation = () => {
   const { getVerificationRequests, getVerificatedArtists } = useApi();
   const [pendingRequests, setPendingRequests] = useState([]);
   const [verifiedArtists, setVerifiedArtists] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [detailRequest, setDetailRequest] = useState(null);
-  const [decline, setDecline] = useState(false);
 
-  const handleOpenModal = (item) => {
-    setDetailRequest(item);
-    setDecline(false);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setDetailRequest(null);
-    setDecline(false);
-    setShowModal(false);
-  };
-
-  const handleOpenDeclineModal = (item) => {
-    setDetailRequest(item);
-    setDecline(true);
-    setShowModal(true);
-  };
+  const [showDepositModal, setShowDepositModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,10 +30,15 @@ export const GasStation = () => {
         <RelayerIndicators />
       </div>
       <div className="flex flex-col gap-3 lg:mx-10 my-5 p-4 w-full">
-        <div className="text-xl md:text-3xl uppercase">ACTIONS</div>
+        <div className="text-xl md:text-3xl uppercase">ACCIONES</div>
         <div className="flex gap-4">
-          <Button color="blue">DEPOSIT</Button>
-          <Button color="green">WITHDRAW</Button>
+          <Button color="blue" onClick={() => setShowDepositModal(true)}>
+            DEPOSITAR
+          </Button>
+          <DepositModal
+            showModal={showDepositModal}
+            handleClose={() => setShowDepositModal(false)}
+          />
         </div>
       </div>
     </div>

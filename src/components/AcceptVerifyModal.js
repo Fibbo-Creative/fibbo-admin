@@ -55,10 +55,10 @@ export const AcceptVerifyModal = ({
                 className="bg-red-600 hover:bg-red-800"
                 onClick={declineAndRemove}
               >
-                Decline
+                Declinar
               </Button>
             ) : (
-              <Button onClick={validateAndAdd}>Validate</Button>
+              <Button onClick={validateAndAdd}>Validar</Button>
             )}
           </div>
         </Modal.Body>
