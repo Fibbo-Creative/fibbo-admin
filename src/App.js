@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useApi } from "./api";
 import { actionTypes } from "./context/stateReducer";
 import { Market } from "./pages/Market";
+import { Reports } from "./pages/Report";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/artists" element={<Artists />} />
                 <Route path="/gasStation" element={<GasStation />} />
                 <Route path="/market" element={<Market />} />
+                <Route path="/reports" element={<Reports />} />
 
                 <Route path="" element={<Home />} />
               </Routes>

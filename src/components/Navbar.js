@@ -37,6 +37,9 @@ export const AdminNavbar = () => {
         >
           Gas Station
         </Navbar.Link>
+        <Navbar.Link href="/reports" active={location.pathname === "/reports"}>
+          Reportes
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

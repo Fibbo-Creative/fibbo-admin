@@ -154,6 +154,12 @@ export const useApi = () => {
 
   //#endregion
 
+  //#region Reports
+  const getReports = async () => {
+    const res = await marketplaceApi.get("admin/reports");
+    return res.data;
+  };
+  //#endregion
   return {
     getNftsForSale,
     getAllProfiles,
@@ -176,6 +182,7 @@ export const useApi = () => {
     getAllCategories,
     getSavedSuggestions,
     depositToGasStation,
+    getReports,
     addNewCategory,
   };
 };
